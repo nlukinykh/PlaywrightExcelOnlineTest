@@ -6,6 +6,7 @@ export interface TestConfig {
   urls: {
     login: string;
     excelOnline: string;
+    workbook: string;
   };
   timeouts: {
     navigation: number;
@@ -21,6 +22,7 @@ export const config: TestConfig = {
   urls: {
     login: "https://www.office.com/login",
     excelOnline: "https://www.office.com/launch/excel",
+    workbook: "https://1drv.ms/x/s!AgY7gIampfG6cmGCC225Aa6ORdU?e=JkoNU2",
   },
   timeouts: {
     navigation: 30000,
