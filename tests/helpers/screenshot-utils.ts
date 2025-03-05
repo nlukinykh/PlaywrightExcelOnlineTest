@@ -5,11 +5,11 @@ import Tesseract from 'tesseract.js';
 export async function captureCellScreenshot(page: Page, frame: FrameLocator) {
   const canvas = frame.locator('#Sheet0_0_0_1 canvas');
   const box = await canvas.boundingBox();
-  if (!box) throw new Error("Не удалось получить bounding box для canvas");
+  if (!box) throw new Error("Failed to get a Bounding Box for Canvas");
 
   await page.screenshot({ 
     path: 'cell_A1.png', 
-    // magical numbers for 1 standard cell in Excel without borders
+    // magic numbers for 1 standard cell in Excel without borders
     clip: { x: box.x, y: box.y, width: 75, height: 18 }
   });
 }
