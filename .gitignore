@@ -12,3 +12,8 @@ theme.json
 package-lock.json
 *.traineddata
 *.png
+
+# Playwright
+test-results/
+test-reports/
+trace.zip
