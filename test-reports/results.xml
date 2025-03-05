@@ -1,6 +1,0 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="21.612016">
-<testsuite name="excel-online.test.ts" timestamp="2025-03-05T15:57:07.947Z" hostname="Chrome" tests="1" failures="0" skipped="0" time="16.928" errors="0">
-<testcase name="Excel Online TODAY() Function Tests › should return current date when using TODAY() function" classname="excel-online.test.ts" time="16.928">
-</testcase>
-</testsuite>
-</testsuites>
