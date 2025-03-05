@@ -12,7 +12,10 @@ test.describe('Excel Online TODAY() Function Tests', () => {
 
   test.afterEach(async ({ page }) => {
     await page.keyboard.press('Control+Z'); 
+    console.log("Undo the changes");
+    
     await page.close();
+    console.log("Close the browser");
   });
 
   test('should return current date when using TODAY() function', async ({ page }) => {
