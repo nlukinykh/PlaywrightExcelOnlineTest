@@ -12,6 +12,7 @@ export async function captureCellScreenshot(page: Page, frame: FrameLocator) {
     // magic numbers for 1 standard cell in Excel without borders
     clip: { x: box.x, y: box.y, width: 75, height: 18 }
   });
+  
   console.log("Screenshot for A1 is captured");
 }
 
