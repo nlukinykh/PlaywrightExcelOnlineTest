@@ -1,30 +1,31 @@
 import { test, expect } from '@playwright/test';
-import { loginToOffice, navigateToWorkbook } from './helpers/auth';
-import { getTodayDateString, areDatesEqual } from './helpers/date';
+import { loginToOffice } from './helpers/auth';
+import { navigateToWorkbook, activateCellA1, enterFormula, closeTooltip } from './helpers/excel-actions';
+import { captureCellScreenshot, extractTextFromScreenshot } from './helpers/screenshot-utils';
+import { format } from 'date-fns';
 
 test.describe('Excel Online TODAY() Function Tests', () => {
-  test('should return current date when using TODAY() function', async ({ page }) => {
-    // Login to Office 365
+  test.beforeEach(async ({ page }) => {
     await loginToOffice(page);
-
-    // Navigate to the specific workbook
     await navigateToWorkbook(page);
+  });
 
-    // Select cell A1
-    await page.click('[data-rc-id="A1"]');
+  test.afterEach(async ({ page }) => {
+    await page.keyboard.press('Control+Z'); 
+    await page.close();
+  });
 
-    // Enter TODAY() formula
-    await page.keyboard.type('=TODAY()');
-    await page.keyboard.press('Enter');
+  test('should return current date when using TODAY() function', async ({ page }) => {
+    const frame = page.frameLocator('iframe');
+    
+    await activateCellA1(page, frame);
+    await enterFormula(page, "=TODAY()");
+    await closeTooltip(page, frame);
+    await captureCellScreenshot(page, frame);
 
-    // Get cell value after formula execution
-    const cellValue = await page.textContent('[data-rc-id="A1"]');
+    const cellText = await extractTextFromScreenshot();
+    const today = format(new Date(), 'dd/MM/yyyy'); 
 
-    // Get today's date for comparison
-    const expectedDate = getTodayDateString();
-
-    // Compare dates
-    expect(cellValue).toBeTruthy();
-    expect(areDatesEqual(cellValue!, expectedDate)).toBeTruthy();
+    expect(cellText).toContain(today);
   });
 });

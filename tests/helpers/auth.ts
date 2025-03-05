@@ -9,22 +9,16 @@ export async function loginToOffice(page: Page): Promise<void> {
   await page.click('input[type="submit"]');
 
   // Enter password
+  await page.waitForSelector('input[type="email"]', { state: 'detached' });
   await page.fill('input[type="password"]', config.credentials.password);
-  await page.click('input[type="submit"]');
+  await page.click('button[type="submit"]');
 
-  // Wait for successful login
-  await page.waitForNavigation();
-}
-
-export async function navigateToWorkbook(page: Page): Promise<void> {
-  // Navigate directly to the specified workbook
-  await page.goto(config.urls.workbook);
-
-  // Wait for Excel Online to fully load
-  await page.waitForSelector('.excel-canvas', {
-    timeout: config.timeouts.navigation
-  });
-
-  // Wait a moment for the workbook to be fully interactive
-  await page.waitForTimeout(2000);
+  await page.waitForSelector('input[type="password"]', { state: 'detached' });
+  
+  // Click on Decline button on the form "Stay signed in?"
+  const declineButton = page.locator('button[id="declineButton"]');
+  const acceptButton = page.locator('button[id="acceptButton"]')
+  if (await declineButton.isEnabled() && await acceptButton.isEnabled()) {
+    await declineButton.click();
+  }
 }

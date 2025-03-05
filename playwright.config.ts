@@ -20,11 +20,16 @@ const config: PlaywrightTestConfig = {
     {
       name: 'Chrome',
       use: {
+        channel: 'chrome',
         browserName: 'chromium',
-        viewport: { width: 1280, height: 720 },
         launchOptions: {
-          args: ['--start-maximized']
-        }
+          args: [
+              '--start-maximized',
+              '--disable-extensions'
+            ],
+          headless: false,
+        },
+        viewport: null,
       },
     }
   ],

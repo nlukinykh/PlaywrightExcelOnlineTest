@@ -1,6 +1,14 @@
-node_modules
-dist
-.DS_Store
-server/public
-vite.config.ts.*
-*.tar.gz
+# Node.js
+node_modules/
+build/
+*.log
+
+# Env
+.env
+.replit
+theme.json
+
+# Auto-generated
+package-lock.json
+*.traineddata
+*.png

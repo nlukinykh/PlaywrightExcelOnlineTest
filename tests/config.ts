@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 export interface TestConfig {
   credentials: {
     email: string;
@@ -16,8 +19,8 @@ export interface TestConfig {
 
 export const config: TestConfig = {
   credentials: {
-    email: process.env.EXCEL_EMAIL || "test@example.com",
-    password: process.env.EXCEL_PASSWORD || "password123",
+    email: process.env.EXCEL_EMAIL || "example@email.com",
+    password: process.env.EXCEL_PASSWORD || "password",
   },
   urls: {
     login: "https://www.office.com/login",
