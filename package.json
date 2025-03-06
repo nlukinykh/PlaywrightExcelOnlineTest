@@ -12,6 +12,12 @@
   "devDependencies": {
     "@types/node": "20.16.11"
   },
+  "scripts": {
+    "test": "playwright test",
+    "install-browsers": "playwright install",
+    "install-deps": "playwright install-deps",
+    "update-playwright": "npm install playwright@latest"
+  },
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
   }
