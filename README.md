@@ -12,7 +12,7 @@ cd PlaywrightExcelOnlineTest
 ```sh
 npm install
 ```
-### 4️⃣ Install Playwright (if necessary)
+### 4️⃣ Install Playwright
 ```sh
 npx playwright install
 ```
